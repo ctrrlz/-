@@ -5,9 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <title>B</title>
+
+    <title>Document</title>
 </head>
 <style>
+    html {
+  height: 100%;
+}
 img{
     max-width: 8vw;
     max-height: 6vw;
@@ -21,14 +25,15 @@ align-items: center;
 margin-bottom: 20px;
 position: relative;
 padding-bottom: 15px;
-width: 16vw;
+width: 20vw;
+font-family: Arial, Helvetica, sans-serif;
 }
 .content{
 display: flex;
 justify-content: space-evenly;
 flex-wrap:wrap;
 width: 85vw;
-margin-left: 15vw;
+margin-top: 5vw;
 
 }
 .price{
@@ -37,25 +42,21 @@ bottom: 0px;
 right: 20px;
 font-weight: bold;
 }
-.categ{
-display: flex;
-flex-wrap:wrap;
-width: 15vw;
 
-
-}
-button{
-    margin-top: 10px;
-}
-#main-holder {
-  width: 50%;
-  height: 70%;
+body {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
   display: grid;
   justify-items: center;
   align-items: center;
-  background-color: white;
-  border-radius: 7px;
-  box-shadow: 0px 0px 5px 2px black;
+
+}
+
+#login-header {
+  
+  display: grid;
+  margin-top: 30px;
 }
 
 #login-error-msg-holder {
@@ -111,11 +112,19 @@ button{
   color: white;
   font-weight: bold;
   background-color: #3a3a3a;
+  
   outline: none;
+}
+.categ{
+    position: absolute;
+    top:20px;
+    right:20px;
+   
 }
 </style>
 <body>
-    <main id="main-holder">
+    <div class="categ"></div>
+    <div class="content"></div>
         <h1 id="login-header">Login</h1>
         
         <div id="login-error-msg-holder">
@@ -127,27 +136,12 @@ button{
           <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
           <input type="submit" value="Login" id="login-form-submit">
         </form>
-        </main>
-        <!--<form class="form">
-            
-                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Name</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1">
-                </div>
-                <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1">
-                </div>
-                <button type="submit" class="btn btn-primary" id="login-form-submit">Submit</button>
-              
-        </form>-->
-
-      <div class="categ"></div>
-      <div class="content"></div>
+       
     <script>
-
+let lh = document.getElementById('login-header')
+let hold= document.getElementById('login-error-msg-holder')
 const loginForm = document.getElementById("login-form");
-const loginButton = document.getElementsByClassName("login-form-submit");
+const loginButton = document.getElementById("login-form-submit");
 const loginErrorMsg = document.getElementById("login-error-msg");
 
 loginButton.addEventListener("click", (e) => {
@@ -156,41 +150,98 @@ loginButton.addEventListener("click", (e) => {
     const password = loginForm.password.value;
 
     if (username === "user" && password === "22") {
-        console.log('1')
+lh.remove();
+hold.remove();
+loginForm.remove();
+
+let product = anyFunc();
+
+let button1 = document.createElement('button');
+   button1.innerText = "men's clothing";
+   button1.classList.add('btn')
+   let a = document.querySelector('.categ');
+    a.appendChild(button1);
+   button1.addEventListener('click', () => anyFunc(link = "category/men's clothing"))
+let button2 = document.createElement('button');
+   button2.innerText = "women's clothing";
+   button2.classList.add('btn')
+    a.appendChild(button2);
+   button2.addEventListener('click', () => anyFunc(link = "category/women's clothing"))
+let button3 = document.createElement('button');
+   button3.innerText = "jewelery";
+   button3.classList.add('btn')
+    a.appendChild(button3);
+   button3.addEventListener('click', () => anyFunc(link = 'category/jewelery'))
+let button4 = document.createElement('button');
+   button4.innerText = "electronics";
+   button4.classList.add('btn')
+    a.appendChild(button4);
+   button4.addEventListener('click', () => anyFunc(link = 'category/electronics'))
+
+        /* console.log(product) */
     } else {
-      loginErrorMsg.style.opacity = 1;
+        loginErrorMsg.style.opacity = 1;
     }
 })
+/*let product = anyFunc();*/
 
-let product= fetch('https://fakestoreapi.com/products')
-            .then(res=>res.json());
+/*let button1 = document.createElement('button');
+   button1.innerText = "men's clothing";
+   button1.classList.add('btn')
+   let a = document.querySelector('.categ');
+    a.appendChild(button1);
+   button1.addEventListener('click', () => anyFunc(link = "category/men's clothing"))
+let button2 = document.createElement('button');
+   button2.innerText = "women's clothing";
+   button2.classList.add('btn')
+    a.appendChild(button2);
+   button2.addEventListener('click', () => anyFunc(link = "category/women's clothing"))
+let button3 = document.createElement('button');
+   button3.innerText = "jewelery";
+   button3.classList.add('btn')
+    a.appendChild(button3);
+   button3.addEventListener('click', () => anyFunc(link = 'category/jewelery'))
+let button4 = document.createElement('button');
+   button4.innerText = "electronics";
+   button4.classList.add('btn')
+    a.appendChild(button4);
+   button4.addEventListener('click', () => anyFunc(link = 'category/electronics'))*/
 
-let content = document.querySelector('.content');
+function anyFunc(link = ''){
+    fetch("https://fakestoreapi.com/products/" + link)
+            .then(res=>res.json())
+            .then(json => {
+                console.log(json);
+                product = json;
+                return json;
+            }
+           )
+           .then(data => {
+            createCards(data);
+            return data;
+           });
+}
 
-/*function createCards(arr){ 
+let content = document.getElementsByClassName('content')[0];
+function createCards(arr){
+    content.innerHTML = ''; 
     for(let item of arr){
         let container = document.createElement('div');
         container.classList.add('card');
-
         let img = document.createElement('img');
         img.src = item.image;
         
-        /*let block = document.createElement('div');
+        let block = document.createElement('div');
         block.classList.add('card-body');
-
         let header = document.createElement('h5');
         header.innerText = item.category;
-
         let header2 = document.createElement('h5');
         header.innerText = item.title;
-
         let par = document.createElement('p');
         par.innerText = item.description;
-
         let price = document.createElement('p');
         price.innerText = item.price;
         price.classList.add('price');
-
         container.append(img);
         content.append(container);
         container.append(block);
@@ -198,49 +249,10 @@ let content = document.querySelector('.content');
         block.append(header);
         block.append(par);
         block.append(price);
-    }
-   }
-   createCard(product);
-*/
-
-
-   let button1 = document.createElement('button');
-   button1.innerText = "men's clothing";
-   button1.classList.add('btn')
-   let a = document.querySelector('.categ');
-    a.appendChild(button1);
-   button1.addEventListener('click', () => {
-    product=fetch("https://fakestoreapi.com/products/category/men's clothing")
-            .then(res=>res.json())
-            .then(json=>console.log(json))
-})
-let button2 = document.createElement('button');
-   button2.innerText = "women's clothing";
-   button2.classList.add('btn')
-    a.appendChild(button2);
-   button2.addEventListener('click', () => {
-    product=fetch("https://fakestoreapi.com/products/category/women's clothing")
-            .then(res=>res.json())
-            .then(json=>console.log(json))
-})
-let button3 = document.createElement('button');
-   button3.innerText = "jewelery";
-   button3.classList.add('btn')
-    a.appendChild(button3);
-   button3.addEventListener('click', () => {
-    product=fetch("https://fakestoreapi.com/products/category/jewelery")
-            .then(res=>res.json())
-            .then(json=>console.log(json))
-})
-let button4 = document.createElement('button');
-   button4.innerText = "electronics";
-   button4.classList.add('btn')
-    a.appendChild(button4);
-   button4.addEventListener('click', () => {
-    product=fetch("https://fakestoreapi.com/products/category/electronics")
-            .then(res=>res.json())
-            .then(json=>console.log(json))
-})
+    content.append(container);
+    
+    }}
+    
     </script>
 </body>
 </html>
