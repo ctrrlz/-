@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <title>Document</title>
+</head>
+<style>
+    html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+
+}
+
+#login-header {
+  
+  display: grid;
+  margin-top: 30px;
+}
+
+#login-error-msg-holder {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+#login-error-msg {
+  width: 23%;
+  text-align: center;
+  margin: 0;
+  padding: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #8a0000;
+  border: 1px solid #8a0000;
+  background-color: #e58f8f;
+  opacity: 0;
+}
+
+#error-msg-second-line {
+  display: block;
+}
+
+#login-form {
+  align-self: flex-start;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+.login-form-field::placeholder {
+  color: #3a3a3a;
+}
+
+.login-form-field {
+  border: none;
+  border-bottom: 1px solid #3a3a3a;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  outline: none;
+  padding: 0px 0px 5px 5px;
+}
+
+#login-form-submit {
+  width: 100%;
+  padding: 7px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  background-color: #3a3a3a;
+  cursor: pointer;
+  outline: none;
+}
+.categ{
+    position: absolute;
+    top:20px;
+    right:20px;
+   
+}
+</style>
+<body>
+    <div class="categ"></div>
+    <div class="content"></div>
+        <h1 id="login-header">Login</h1>
+        
+        <div id="login-error-msg-holder">
+          <p id="login-error-msg">Invalid username <span id="error-msg-second-line">and/or password</span></p>
+        </div>
+        
+        <form id="login-form">
+          <input type="text" name="username" id="username-field" class="login-form-field" placeholder="Username">
+          <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
+          <input type="submit" value="Login" id="login-form-submit">
+        </form>
+       
+    <script>
+let lh = document.getElementById('login-header')
+let hold= document.getElementById('login-error-msg-holder')
+const loginForm = document.getElementById("login-form");
+const loginButton = document.getElementById("login-form-submit");
+const loginErrorMsg = document.getElementById("login-error-msg");
+
+loginButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    const username = loginForm.username.value;
+    const password = loginForm.password.value;
+
+    if (username === "user" && password === "22") {
+lh.remove();
+hold.remove();
+loginForm.remove();
+
+
+        console.log(product)
+    } else {
+        loginErrorMsg.style.opacity = 1;
+    }
+})
+let product= fetch('https://fakestoreapi.com/products')
+            .then(res=>res.json());
+let button1 = document.createElement('button');
+   button1.innerText = "men's clothing";
+   button1.classList.add('btn')
+   let a = document.querySelector('.categ');
+    a.appendChild(button1);
+   button1.addEventListener('click', () => {
+    product=fetch("https://fakestoreapi.com/products/category/men's clothing")
+            .then(res=>res.json())
+            .then(json=>console.log(json))
+})
+let button2 = document.createElement('button');
+   button2.innerText = "women's clothing";
+   button2.classList.add('btn')
+    a.appendChild(button2);
+   button2.addEventListener('click', () => {
+    product=fetch("https://fakestoreapi.com/products/category/women's clothing")
+            .then(res=>res.json())
+            .then(json=>console.log(json))
+})
+let button3 = document.createElement('button');
+   button3.innerText = "jewelery";
+   button3.classList.add('btn')
+    a.appendChild(button3);
+   button3.addEventListener('click', () => {
+    product=fetch("https://fakestoreapi.com/products/category/jewelery")
+            .then(res=>res.json())
+            .then(json=>console.log(json))
+})
+let button4 = document.createElement('button');
+   button4.innerText = "electronics";
+   button4.classList.add('btn')
+    a.appendChild(button4);
+   button4.addEventListener('click', () => {
+    product=fetch("https://fakestoreapi.com/products/category/electronics")
+            .then(res=>res.json())
+            .then(json=>console.log(json))
+})
+
+let content = document.getElementsByClassName('content');
+function createCards(arr){ 
+    for(let item of arr){
+        let container = document.createElement('div');
+        container.classList.add('card');
+    let price = document.createElement('p');
+        price.innerText = item.price;
+        price.classList.add('price');
+    content.append(container);
+    container.append(price);
+    }}
+    createCards(product)
+    </script>
+</body>
+</html>
